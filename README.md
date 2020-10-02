@@ -1,1 +1,1 @@
-# C350_App_DoOrDoNot
+# Comp350_App_DoOrDoNot
