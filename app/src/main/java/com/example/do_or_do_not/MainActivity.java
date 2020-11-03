@@ -4,17 +4,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 
 import android.view.View;
 
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 
@@ -31,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> tomorrowList = new ArrayList<HashMap<String, String>>();
     ArrayList<HashMap<String, String>> upcomingList = new ArrayList<HashMap<String, String>>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,11 +41,14 @@ public class MainActivity extends AppCompatActivity {
         taskListToday = findViewById(R.id.taskListToday);
         taskListTomorrow = findViewById(R.id.taskListTomorrow);
         taskListUpcoming = findViewById(R.id.taskListUpcoming);
+
+
     }
 
     public void openAddModifyTask(View view) {
         startActivity(new Intent(this, AddModifyTask.class));
     }
+
 
 
     @Override
@@ -144,5 +142,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void launchSecondActivity(View view) {
+        Intent intent1 = new Intent(this, SecondActivity.class);
+        startActivity(intent1);
     }
 }
