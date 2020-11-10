@@ -29,7 +29,7 @@ class Database extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(
-                "CREATE TABLE " + TABLE_NAME + "(id INTEGER PRIMARY KEY, name TEXT, date TEXT, status INTEGER )"
+                "CREATE TABLE " + TABLE_NAME + "(id INTEGER PRIMARY KEY, name TEXT, date TEXT, status INTEGER, priority TEXT )"
         );
 
     }
@@ -40,13 +40,14 @@ class Database extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertTask(String name, String date) {
+    public boolean insertTask(String name, String date, String priority) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put("name", name);      //todo check here
         contentValues.put("date", date);
         contentValues.put("status", 0);
+        contentValues.put("priority", priority);
         //  contentValues.put("COLUMN_TASKPRIORITY", priority);
         db.insert(TABLE_NAME, null, contentValues);
         return true;
@@ -61,12 +62,14 @@ class Database extends SQLiteOpenHelper {
         return true;
     }
 
-    public boolean updateTask(String id, String name, String date) {
+    public boolean updateTask(String id, String name, String date, String priority) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put("name", name);
         contentValues.put("date", date);
+        contentValues.put("priority", priority);
+
         //contentValues.put("COLOMN_TASKDESC", description);
 
         db.update(TABLE_NAME, contentValues, "id =? ", new String[]{id});
